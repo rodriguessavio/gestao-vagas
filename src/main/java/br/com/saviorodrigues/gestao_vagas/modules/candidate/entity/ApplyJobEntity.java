@@ -39,21 +39,4 @@ public class ApplyJobEntity {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-
-    public JobEntity getJobEntity() {
-        return jobEntity;
-    }
-
-    public void setJobEntity(JobEntity jobEntity) {
-        this.jobEntity = jobEntity;
-    }
-
-    public CandidateEntity getCandidateEntity() {
-        return candidateEntity;
-    }
-
-    public void setCandidateEntity(CandidateEntity candidateEntity) {
-        this.candidateEntity = candidateEntity;
-    }
-
 }
