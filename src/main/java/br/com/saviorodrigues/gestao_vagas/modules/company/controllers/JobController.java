@@ -43,17 +43,21 @@ public class JobController {
             })
     })
     @SecurityRequirement(name="jwt_auth")
-    public JobEntity create(@Valid @RequestBody CreateJobDTO createJobDTO, HttpServletRequest request) {
-
-        // aqui está sendo recuperado o atributo company_id que está sendo passada no requisição
-        var companyId = request.getAttribute("company_id");
-        //convertendo string para UUID, para poder setar como fk
-        var jobEntity = JobEntity.builder()
-                .benefits(createJobDTO.getBenefits())
-                .companyId(UUID.fromString(companyId.toString()))
-                .description(createJobDTO.getDescription())
-                .level(createJobDTO.getLevel())
-                .build();
-        return this.createJobUseCase.execute(jobEntity);
+    public ResponseEntity<Object> create(@Valid @RequestBody CreateJobDTO createJobDTO, HttpServletRequest request) {
+        try{
+            // aqui está sendo recuperado o atributo company_id que está sendo passada no requisição
+            var companyId = request.getAttribute("company_id");
+            //convertendo string para UUID, para poder setar como fk
+            var jobEntity = JobEntity.builder()
+                    .benefits(createJobDTO.getBenefits())
+                    .companyId(UUID.fromString(companyId.toString()))
+                    .description(createJobDTO.getDescription())
+                    .level(createJobDTO.getLevel())
+                    .build();
+            var result = this.createJobUseCase.execute(jobEntity);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
