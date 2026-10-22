@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y openjdk-17-jdk maven
 COPY . .
 
 
-RUN mvn clean install
+RUN chmod +x mvnw && ./mvnw clean package
 
 RUN echo "=== CONTEUDO DE /app ===" && ls -la /app
 
