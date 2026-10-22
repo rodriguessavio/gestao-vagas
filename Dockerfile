@@ -1,27 +1,15 @@
-
 FROM ubuntu:latest AS build
 
-WORKDIR /app
-
-RUN apt-get update && apt-get install -y openjdk-17-jdk maven
-
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
+RUN apt-get install maven -y
+RUN mvn clean install
 
-RUN chmod +x mvnw && ./mvnw clean package
-
-RUN echo "=== CONTEUDO DE /app ===" && ls -la /app
-
-RUN echo "=== ARQUIVOS JAR ===" && find /app -type f -name "*.jar"
-
-RUN find /app -type f -name "*.jar"
-
-FROM eclipse-temurin:17-jdk
-
-WORKDIR /app
-
+FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
-COPY --from=build /app/target/gestao_vagas-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /target/gestao_vagas-0.0.1.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
