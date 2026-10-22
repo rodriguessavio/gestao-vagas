@@ -10,8 +10,7 @@
 	</parent>
 	<groupId>br.com.saviorodrigues</groupId>
 	<artifactId>gestao_vagas</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	<version>0.0.1</version>
     <name>gestao_vagas</name>
 	<description>Projeto para gerenciamento de vagas</description>
 	<url/>
