@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean install
 
 # Runtime stage
-FROM eclipse-temurin:17-jdk-slim
+FROM eclipse-temurin:17-jdk-jammy
 EXPOSE 8080
 
 COPY --from=build /target/gestao-vagas-0.0.1.jar app.jar
