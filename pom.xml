@@ -11,6 +11,7 @@
 	<groupId>br.com.saviorodrigues</groupId>
 	<artifactId>gestao_vagas</artifactId>
 	<version>0.0.1</version>
+    <packaging>jar</packaging>
     <name>gestao_vagas</name>
 	<description>Projeto para gerenciamento de vagas</description>
 	<url/>
